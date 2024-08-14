@@ -1,3 +1,5 @@
 export { normalizeURL };
 
-function normalizeURL(URLstring) { }
+function normalizeURL(URLstring) {
+	return URLstring
+}
