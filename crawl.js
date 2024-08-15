@@ -5,10 +5,16 @@ function normalizeURL(URLstring) {
 	let URL = URLstring
 
 
-	if (URL.endsWith('/')) {
-		URL = URL.slice(0, -1)
+	if (
+		URL.startsWith('http:///') ||
+		URL.startsWith('https:///') ||
+		URL.startsWith('http://.') ||
+		URL.startsWith('https://.') ||
+		URL.startsWith('http://,') ||
+		URL.startsWith('https://,')
+	) {
+		throw new Error('invalid http/https URL')
 	}
-
 	if (URL.startsWith('https://')) {
 		URL = URL.slice(8)
 
@@ -16,7 +22,15 @@ function normalizeURL(URLstring) {
 		URL = URL.slice(7)
 
 	} else {
-		throw Error('Not a valid http or https link')
+		throw new Error('URL is already normalized')
+	}
+
+	if (URL.endsWith('/')) {
+		URL = URL.replace(/\/+$/, '')
+	}
+
+	if (URL === '') {
+		throw new Error('invalid URL: scheme only')
 	}
 
 	return URL
