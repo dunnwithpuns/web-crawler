@@ -1,38 +1,16 @@
 export { normalizeURL };
+import { URL } from 'node:url';
 
 function normalizeURL(URLstring) {
 
-	let URL = URLstring
 
+	const fullURL = new URL(URLstring);
 
-	if (
-		URL.startsWith('http:///') ||
-		URL.startsWith('https:///') ||
-		URL.startsWith('http://.') ||
-		URL.startsWith('https://.') ||
-		URL.startsWith('http://,') ||
-		URL.startsWith('https://,')
-	) {
-		throw new Error('invalid http/https URL')
-	}
-	if (URL.startsWith('https://')) {
-		URL = URL.slice(8)
-
-	} else if (URL.startsWith('http://')) {
-		URL = URL.slice(7)
-
-	} else {
-		throw new Error('URL is already normalized')
+	if (fullURL.pathname.endsWith('/')) {
+		fullURL.pathname = fullURL.pathname.replace(/\/+$/, '');
 	}
 
-	if (URL.endsWith('/')) {
-		URL = URL.replace(/\/+$/, '')
-	}
+	return (fullURL.hostname + fullURL.pathname)
 
-	if (URL === '') {
-		throw new Error('invalid URL: scheme only')
-	}
-
-	return URL
 }
 
