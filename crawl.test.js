@@ -32,3 +32,11 @@ test('test if invalid URL error is throwing correctly', () => {
 	const input = '.blog.boot.dev/path'
 	expect(() => normalizeURL(input)).toThrow()
 })
+
+test('test if whole url can be normalized', () => {
+
+	const input = 'https://user:pass@blog.boot.dev/path?query=string#hash'
+	const result = normalizeURL(input)
+	const expected = 'blog.boot.dev/path'
+	expect(result).toEqual(expected)
+})
