@@ -1,5 +1,5 @@
-import { test, expect } from "@jest/globals";
-import { normalizeURL } from "./crawl.js";
+import { normalizeURL } from './crawl.js'
+import { test, expect } from '@jest/globals'
 
 test('inputs 4 different paths, should equal same normalized path', () => {
 	const input = ''
