@@ -1,4 +1,4 @@
-import { normalizeURL } from './crawl.js'
+import { normalizeURL, getURLsFromHTML } from './crawl.js'
 import { test, expect } from '@jest/globals'
 
 test('inputs 4 different paths, should equal same normalized path', () => {
@@ -39,4 +39,13 @@ test('test if whole url can be normalized', () => {
 	const result = normalizeURL(input)
 	const expected = 'blog.boot.dev/path'
 	expect(result).toEqual(expected)
+})
+
+test('test that the relative URLs are converted to absolute URLs', () => {
+
+	const baseURL = 'https://boot.dev'
+	const baseHTML = ''
+	const result = getURLsFromHTML(baseHTML, baseURL)
+	const expected =
+		expect(result).toBe(expected)
 })
