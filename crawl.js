@@ -1,5 +1,6 @@
-export { normalizeURL };
+export { normalizeURL, getURLsFromHTML };
 import { URL } from 'node:url';
+import { JSDOM } from 'jsdom';
 
 function normalizeURL(URLstring) {
 
@@ -14,3 +15,5 @@ function normalizeURL(URLstring) {
 
 }
 
+function getURLsFromHTML(htmlBody, baseURL) {
+}

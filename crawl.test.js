@@ -44,8 +44,8 @@ test('test if whole url can be normalized', () => {
 test('test that the relative URLs are converted to absolute URLs', () => {
 
 	const baseURL = 'https://boot.dev'
-	const baseHTML = ''
+	const baseHTML = '<html>\n<body>\n<a href="/xyz">Learn xyz</a>\n</body>\n</html>'
 	const result = getURLsFromHTML(baseHTML, baseURL)
-	const expected =
-		expect(result).toBe(expected)
+	const expected = 'https://boot.dev/xyz'
+	expect(result).toBe(expected)
 })
