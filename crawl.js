@@ -16,4 +16,5 @@ function normalizeURL(URLstring) {
 }
 
 function getURLsFromHTML(htmlBody, baseURL) {
+
 }
