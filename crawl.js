@@ -19,7 +19,6 @@ function getURLsFromHTML(htmlBody, baseURL) {
 
 	const domObj = new JSDOM(htmlBody, {
 		url: baseURL,
-		contentType: 'text/html',
 	})
 	const anchors = domObj.window.document.querySelectorAll('a')
 	
@@ -31,4 +30,8 @@ function getURLsFromHTML(htmlBody, baseURL) {
 	}
 	
 	return links
+}
+
+function crawlPage(baseURL) {
+	const response = await fetch(baseURL, settings)
 }
