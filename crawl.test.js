@@ -47,7 +47,7 @@ test('test that the relative URLs are converted to absolute URLs', () => {
 	const baseHTML = '<html>\n<body>\n<a href="/xyz"><span>Learn xyz</span></a>\n</body>\n</html>'
 	const result = getURLsFromHTML(baseHTML, baseURL)
 	const expected = ['https://boot.dev/xyz']
-	expect(result).toBe(expected)
+	expect(result).toEqual(expected)
 })
 
 test('test to find *all* the anchor elements in a body of HTML', () => {
@@ -56,5 +56,5 @@ test('test to find *all* the anchor elements in a body of HTML', () => {
 	const baseHTML = '<html>\n<body>\n<div><a href="/xyz"><span>practice reference url line</span></a></div><div><a href="/abc"></a></div>'
 	const result = getURLsFromHTML(baseHTML, baseURL)
 	const expected = ['http://boot.dev/xyz', 'http://boot.dev/abc']
-	expect(result).toBe(expected)
+	expect(result).toEqual(expected)
 })

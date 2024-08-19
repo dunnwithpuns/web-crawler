@@ -17,4 +17,18 @@ function normalizeURL(URLstring) {
 
 function getURLsFromHTML(htmlBody, baseURL) {
 
+	const domObj = new JSDOM(htmlBody, {
+		url: baseURL,
+		contentType: 'text/html',
+	})
+	const anchors = domObj.window.document.querySelectorAll('a')
+	
+	const links = []
+	for (let anchor of anchors) {
+		const search = anchor.search
+		const href = anchor.getAttribute('href')
+		links.push(`${baseURL}${href}`)
+	}
+	
+	return links
 }
