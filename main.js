@@ -1,4 +1,5 @@
 import { argv, exit } from 'node:process';
+import { crawlPage } from './crawl.js';
 
 function main() {
 	if (argv.length < 3) {
@@ -9,6 +10,7 @@ function main() {
 		process.exit = 2;
 	} else {
 		console.log(`Started crawling at ${argv[2]}`);
+		crawlPage(argv[2])
 	}
 }
 

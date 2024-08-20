@@ -1,4 +1,4 @@
-export { normalizeURL, getURLsFromHTML };
+export { normalizeURL, getURLsFromHTML, crawlPage };
 import { URL } from 'node:url';
 import { JSDOM } from 'jsdom';
 
@@ -21,17 +21,35 @@ function getURLsFromHTML(htmlBody, baseURL) {
 		url: baseURL,
 	})
 	const anchors = domObj.window.document.querySelectorAll('a')
-	
+
 	const links = []
 	for (let anchor of anchors) {
-		const search = anchor.search
 		const href = anchor.getAttribute('href')
 		links.push(`${baseURL}${href}`)
 	}
-	
+
 	return links
 }
 
 function crawlPage(baseURL) {
-	const response = await fetch(baseURL, settings)
+
+	try {
+		fetch(baseURL)
+
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error(`HTTP error ${response.status}`);
+				}
+				return response.text
+			})
+
+			.then((text) => {
+				htmlBody = text
+			})
+			.catch((error) => {
+				throw new Error(`error fetching body: ${error}`)
+			})
+	} catch (err) {
+		console.log(err.message)
+	}
 }
