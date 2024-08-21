@@ -25,7 +25,12 @@ function getURLsFromHTML(htmlBody, baseURL) {
 	const links = []
 	for (let anchor of anchors) {
 		const href = anchor.getAttribute('href')
-		links.push(`${baseURL}${href}`)
+
+		if (href.includes(http)) {
+			links.push(href)
+		} else {
+			links.push(`${baseURL}${href}`)
+		}
 	}
 
 	return links

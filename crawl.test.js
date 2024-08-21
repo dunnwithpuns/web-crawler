@@ -58,3 +58,7 @@ test('test to find *all* the anchor elements in a body of HTML', () => {
 	const expected = ['http://boot.dev/xyz', 'http://boot.dev/abc']
 	expect(result).toEqual(expected)
 })
+
+test('test absolute URLs as href elements', () => {
+
+})
